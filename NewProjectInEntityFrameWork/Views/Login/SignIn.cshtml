@@ -1,0 +1,142 @@
+﻿@{
+   // Layout = "~/Views/Shared/_CommonLayout.cshtml";
+   Layout = null;
+}
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <!-- Site Title  -->
+    <!-- Vendor Bundle CSS -->
+    <link rel="stylesheet" href="~/login/css/vendor.bundle8bfc.css?ver=1420" />
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="~/login/css/style1.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" />
+    <style>
+        .user-ath {
+            background: linear-gradient(to right, #031b46ed 0%, #031746ad 100%), url(https://static.vecteezy.com/system/resources/previews/002/713/628/non_2x/trading-background-with-sharp-graphics-vector.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .input-bordered {
+            border-radius: 4px;
+            border: 1px solid #ffffff0f;
+            width: 100%;
+            padding: 10px 15px;
+            line-height: 20px;
+            font-size: 14px;
+            color: #fff;
+            transition: all .4s;
+            background: #ffffff12;
+        }
+
+        .user-ath-box {
+            position: relative;
+            padding: 28px 40px 40px;
+            background: #ffffff1f;
+            border-radius: 4px;
+            box-shadow: 0 10px 60px 0 rgb(0 0 0 / 8%);
+            backdrop-filter: blur(3px);
+        }
+
+            .user-ath-box::after {
+                background: none;
+            }
+
+        .input-item {
+            padding-bottom: 20px;
+        }
+
+        .btn {
+            color: #fff;
+        }
+
+
+        .btn-primary {
+            background: #bcd729;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .bg-theme {
+            background-color: #0B0B29 !important;
+            overflow: hidden;
+        }
+
+        .input-bordered::placeholder {
+            color: #fff !important;
+        }
+
+        a {
+            outline: 0;
+            transition: all 0.5s;
+            color: #bcd729;
+        }
+    </style>
+</head>
+<body class="user-ath no-touch bg-theme">
+    <form id="form1" method="post" class="user-ath-form">
+        <div>
+            <div class="user-ath-page">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-8  text-center">
+                            <div class="user-ath-logo">
+                                <a href="/Home/Index">
+                                    <img src="~/images/logo.png" alt="icon" style="max-width: 220px;" />
+                                </a>
+                            </div>
+                            <div class="user-ath-box">
+                                <h4>Login To Your Account</h4>
+                                <div class="input-item">
+                                    <input type="text" placeholder="Your User ID" name="UserId" class="input-bordered" required="" id="txtuserid" />
+                                </div>
+                                <div class="input-item">
+                                    <input type="password" placeholder="Your Password" name="Password" class="input-bordered" required="" id="txtpwd" />
+                                </div>
+                                <div class="gaps"></div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    @* <%--<button class="btn btn-primary">Log in</button>--%> *@
+                                    <button id="btn_Login" type="submit" class="btn btn-primary">Sign In</button>
+                                    <a href="/Login/ForgetPassword" class="simple-link">Forgot Password?</a>
+                                </div>
+                                <br />
+                                <label id="lblMessage" style="color:red;font-weight:500">@ViewBag.Err</label>
+                            </div>
+                            <div class="gaps-2x"></div>
+                            <div class="form-note">Not a member? <a href="/Login/SignUp">Sign Up Now</a> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JavaScript (include all script here) -->
+            <script src="~/login/js/jquery.bundle.js?ver=101"></script>
+            <script src="~/login/js/script.js?ver=101"></script>
+        </div>
+    </form>
+
+    <div class="hero__shape">
+        <div class="shape shape--1">
+            <img src="~/images/h_shape.png" alt="">
+        </div>
+        <div class="shape shape--2">
+            <img src="~/images/h_shape2.png" alt="">
+        </div>
+        <div class="shape shape--3">
+            <img src="~/images/h_shape3.png" alt="">
+        </div>
+    </div>
+</body>
+</html>

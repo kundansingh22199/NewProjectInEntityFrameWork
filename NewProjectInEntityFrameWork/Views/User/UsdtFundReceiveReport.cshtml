@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "UsdtFundReceiveReport ";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+<link rel="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" type="text/css" />
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $("#dataTable1").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+            $("#dataTable1").dataTable();
+        });
+    });
+</script>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view pt-0">
+            <div class="header">
+                <h2 class="panel__tit">Fund Received Reports</h2>
+
+            </div>
+            <div class="clearfix">
+            </div>
+
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="table-wrap">
+                        <div class="table-responsive">
+                            <table class="table table-striped mb-0 dataTable" id="dataTable1">
+                                <thead>
+                                    <tr>
+                                        <td>#No.</td>
+                                        <td>User ID</td>
+                                        <td>From Id</td>
+                                        <td>Amount($)</td>
+                                        <td>Remark</td>
+                                        <td>CreateDate</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="trderlist">
+                                    @{
+                                        int rowNo = 0;
+                                    }
+                                    @if (ViewData["lst"] != null)
+                                    {
+                                        foreach (var item in ViewData["lst"] as List<modFundReceive>)
+                                        {
+                                            <tr>
+                                                <td>@(rowNo += 1)</td>
+                                                <td>@item.regno</td>
+                                                <td>@item.from_id</td>
+                                                <td>$@item.amount</td>
+                                                <td>@item.remarks</td>
+                                                <td>@item.createdate</td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

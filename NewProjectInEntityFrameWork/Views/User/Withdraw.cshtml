@@ -1,0 +1,298 @@
+﻿@model modKYC
+@{
+    ViewBag.Title = "Withdraw";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+    var kycList = ViewBag.kyc as List<NewProjectInEntityFrameWork.Models.modKYC>;
+    bool isApproved = kycList != null && kycList.Any(item => item.status == "Approved");
+    var approvedItem = kycList?.FirstOrDefault(item => item.status == "Approved");
+}
+<style>
+    .form-group {
+        padding-bottom: 7px;
+        margin: 11px 0 0 0;
+    }
+
+    .control-label {
+        padding-top: 8px;
+    }
+
+    .form-group label.control-label {
+        font-size: 14px;
+        line-height: 1.0714285718;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    a.btn {
+        color: #fff;
+    }
+
+    .loading {
+        margin: 0px;
+        background-position: center center;
+        border: 1px dotted #000000;
+        z-index: 16000000;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        padding: 0px;
+        text-align: center;
+        background-color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 600;
+        color: #990000;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        background-color: black;
+        filter: alpha(opacity=10);
+        opacity: 0.5;
+        height: 100%;
+        background-image: url('../images/loading.gif');
+    }
+
+    .form-group {
+        margin-bottom: 9px;
+    }
+
+    .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+        background-color: #ffffff08;
+    }
+
+    .loader-div {
+        display: none;
+        position: fixed;
+        margin: 0px;
+        padding: 0px;
+        right: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        z-index: 30001;
+        opacity: 0.8;
+    }
+
+    .loader-img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+<script src="~/assets/js/payment.js"></script>
+<script src="~/assets/js/demo.js"></script>
+
+<script type="text/javascript">
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+</script>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/js/sweetalert.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<div class="loader-div">
+    <img class="loader-img" src="~/images/loderss.gif" style="height: 500px;width: auto;" />
+</div>
+<div class="row ">
+    <div class="col-md-12 col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <div class="loading" style="display: none;" id="loading"></div>
+                    <h6 class="panel-title txt-dark">Withdraw </h6>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="form-wrap">
+                        <form method="post" action="/User/Withdraw">
+                            <div role="form" class="form-horizontal">
+                                <div class="form-group row">
+                                    <h4>Withdraw Wallet: $@ViewBag.withamt</h4>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label " for="example-input-small">
+                                        Amount
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="txtusdtadrs" name="amount" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label " for="example-input-small">
+                                        Wallet Type
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <select id="ddlWallet" name="wallettype" class="form-control">
+                                            <option value="0">---Select Wallet---</option>
+                                            <option value="1">USDT</option>
+                                            <option value="2">BANK</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                @if (isApproved)
+                                {
+                                    <div class="container-fluid" id="divbank" style="display:none">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 control-label">Bank Name</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="bank" Class="form-control" placeholder="Enter Bank Name" readonly="readonly" value="@approvedItem.bank" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 control-label">Account Number</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="AccountNo" Class="form-control" placeholder="Enter A/c Number" readonly="readonly" value="@approvedItem.AccountNo" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 control-label">IFSC</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="IFSC" Class="form-control" placeholder="Enter IFSC Code" readonly="readonly" value="@approvedItem.IFSC" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid" id="divusdt" style="display:none">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 control-label">Usdt Address</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="usdtaddress" Class="form-control" placeholder="Enter Branch Name" readonly="readonly" value="@approvedItem.cryptoaddress" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label" for="example-input-small">
+                                        Transaction Password
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <input type="password" name="password" id="txtpassword" placeholder="Enter Transaction password" class="form-control" onblur="GetTranPassword();" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ">
+                                    <div class="col-sm-offset-3 col-sm-6">
+                                        @if (isApproved)
+                                        {
+                                            <button id="btnSubmit" type="submit" class="btn btn-primary m-t-15 ">Submit</button>
+                                            <br />
+                                        }
+                                        else
+                                        {
+                                            <label id="lblerror1" style="color:red;">
+                                                Sorry Your Kyc Will Not Approved
+                                            </label>
+                                        }
+                                        @{
+
+                                            var message = ViewBag.mess as string;
+                                            var labelColor = message == "ok" ? "green" : "red";
+                                        }
+
+                                        <label id="lblerror" style="color:@labelColor;">
+                                            @message
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<script>
+    // function showLoader() {
+    //     document.getElementById("loading").style.display = 'block';
+
+    //     setTimeout(function () {
+    //         document.getElementById("loading").style.display = 'none';
+    //     }, 2000);
+    // }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //GetWalletBalance();
+        function GetKycDetails() {
+            debugger
+            $.ajax({
+                url: '/User/GetTransactionPassword',
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    debugger
+                    if (pass == data) {
+                        $('#lblerror').text("Password Matched");
+                        $('#lblerror').css('color', 'green');
+                        $('#btnSubmit').prop('disabled', false);
+                    }
+                    else {
+                        $('#lblerror').text("Password Not Matched");
+                        $('#lblerror').css('color', 'red');
+                        $('#btnSubmit').prop('disabled', true);
+                    }
+                    // $('#txtpassword').val(data);
+                }
+            });
+        }
+        $('#ddlWallet').change(function () {
+            var ddlWallet = $(this).val();
+            GetNextData(ddlWallet);
+        });
+        function GetNextData(ddlpmode) {
+            debugger
+            if (ddlpmode == "0") {
+                $("#divbank").hide();
+                $("#divusdt").hide();
+                $("#lblerror").val("Please Select Wallet");
+            }
+            else if (ddlpmode == "2") {
+                $("#divbank").show();
+                $("#divusdt").hide();
+                $("#lblerror").hide();
+            }
+            else if (ddlpmode == "1") {
+                $("#divbank").hide();
+                $("#divusdt").show();
+                $("#lblerror").hide();
+            }
+        }
+    })
+    function GetTranPassword() {
+        debugger
+        var pass = $('#txtpassword').val();
+        $.ajax({
+            url: '/User/GetTransactionPassword',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                debugger
+                if (pass == data) {
+                    $('#lblerror').text("Password Matched");
+                    $('#lblerror').css('color', 'green');
+                    $('#btnSubmit').prop('disabled', false);
+                }
+                else {
+                    $('#lblerror').text("Password Not Matched");
+                    $('#lblerror').css('color', 'red');
+                    $('#btnSubmit').prop('disabled', true);
+                }
+                // $('#txtpassword').val(data);
+            }
+        });
+    }
+</script>

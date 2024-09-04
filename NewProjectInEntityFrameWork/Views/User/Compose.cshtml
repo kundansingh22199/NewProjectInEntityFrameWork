@@ -1,0 +1,307 @@
+﻿@{
+    ViewBag.Title = "Compose Mail ";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+<style>
+    thead {
+        color: white;
+    }
+
+    .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+        background: none !important;
+        opacity: 1;
+    }
+
+    .nav-pills-outline.nav-pills > li.active > a {
+        background-color: transparent !important;
+        border: 2px solid #87cf0e;
+        color: #87cf0e;
+    }
+
+        .nav-pills-outline.nav-pills > li.active > a:hover, .nav-pills-outline.nav-pills > li.active > a:active, .nav-pills-outline.nav-pills > li.active > a:focus {
+            border: 2px solid #87cf0e;
+            color: #87cf0e;
+        }
+
+    .tran tbody tr td:nth-child(3) {
+        white-space: nowrap;
+        max-width: 100px !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .tran tbody tr td:nth-child(4) {
+        white-space: nowrap;
+        max-width: 100px !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .with tbody tr td:nth-child(6) {
+        white-space: nowrap;
+        max-width: 100px !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .table > tbody > tr > td, .jsgrid-table > tbody > tr > td, .table > tbody > tr > th, .jsgrid-table > tbody > tr > th, .table > tfoot > tr > td, .jsgrid-table > tfoot > tr > td, .table > tfoot > tr > th, .jsgrid-table > tfoot > tr > th, .table > thead > tr > td, .jsgrid-table > thead > tr > td, .table > thead > tr > th, .jsgrid-table > thead > tr > th {
+        padding: 10px 10px;
+        font-size: 13px;
+    }
+
+    .tran {
+        font-size: 13px;
+    }
+
+    hr {
+        margin-top: 14px;
+        margin-bottom: 10px;
+        border-top: 1px solid #D3D3D3;
+    }
+
+    table.reward {
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    table.table.reward > tbody > tr > td {
+        padding: 11px 16px;
+        border-top: 1px solid #ffffff1a;
+        border-bottom: 1px solid #ffffff1a;
+        vertical-align: middle;
+    }
+
+    table.table.reward.table-striped > tbody > tr {
+        background-color: rgb(33, 84, 102);
+        color: #fff !important;
+    }
+
+    .nav-pills > li > a {
+        padding: 8px 15px;
+    }
+</style>
+
+<style>
+    .btn {
+        height: 40px;
+    }
+
+    .btn-danger {
+        color: #FFFFFF !important;
+    }
+</style>
+
+<div class="row ">
+
+    <div class="col-sm-12">
+
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Help</h6>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+
+                    <div class="pills-struct">
+                        <ul role="tablist" class="nav nav-pills nav-pills-outline" id="myTabs_12">
+                            <li role="presentation" class="active"><a data-toggle="tab" role="tab" id="home_tab_12" href="#home_12">Compose mail</a></li>
+                            <li role="presentation"><a data-toggle="tab" id="home_tab_13" role="tab" href="#home_13">Inbox</a></li>
+                            <li role="presentation"><a data-toggle="tab" id="home_tab_14" role="tab" href="#home_14">Outbox</a></li>
+
+
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent_12">
+                            <form id="frm1" method="post" action="/User/Compose">
+                                <div id="home_12" class="tab-pane fade active in" role="tabpanel">
+
+                                    <div class="graph-chart mt-40">
+
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
+                                                <table border="0" width="100%" cellpadding="0" cellspacing="0" id="datable_1">
+
+
+                                                    <tr align="left">
+                                                        <td align="left" width="15%" style="height: 36px; padding-left: 10px; text-align: right;">
+                                                            Send To
+                                                        </td>
+                                                        <td align="left" width="85%" style="height: 35px; padding-left: 5px;">
+                                                            <input type="text" ID="txtsendto" name="ToRegNo" class="form-control" value="Administrator" ReadOnly="readonly" Width="500px" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="left">
+                                                        <td align="left" width="15%" style="height: 36px; padding-left: 10px; text-align: right; padding-top: 10px;">
+                                                            Mail Send To
+                                                        </td>
+                                                        <td align="left" width="85%" style="height: 35px; padding-left: 5px; padding-top: 10px;">
+                                                            <select ID="ddl_type" class="form-control" name="sendto" Width="500px">
+                                                                <option Value="0">--Select--</option>
+                                                                <option Value="Withdraw">Withdraw</option>
+                                                                <option Value="Payout">Payout</option>
+                                                                <option Value="Other">Other</option>
+                                                            </select>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="left">
+                                                        <td align="left" width="15%" style="height: 36px; padding-left: 10px; text-align: right; padding-top: 10px;">
+                                                            Subject
+                                                        </td>
+                                                        <td align="left" width="85%" style="height: 35px; padding-left: 5px; padding-top: 10px;">
+                                                            <input type="text" ID="txtsub" name="Subject" class="form-control" Width="500px" />
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="left">
+                                                        <td align="left" style="padding-left: 5px; text-align: right; padding-top: 10px;" valign="top">
+                                                            Message
+                                                        </td>
+                                                        <td align="left" style="padding-left: 5px; height: 35px; padding-top: 5px; padding-top: 10px;">
+                                                            <input type="text" multiple id="txtmsg" name="Message" class="form-control" Height="200px" Style="position: relative" Width="500px" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="left">
+                                                        <td colspan="2" style="text-align: left; padding-left: 16%; padding-top: 10px; height: 50px;">
+                                                            <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center" style="color: #000000">
+                                                        <td colspan="2" style="text-align: center; height: 50px;">
+                                                            <label id="lblMessage"></label>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+
+
+                            <div id="home_13" class="tab-pane fade" role="tabpanel">
+
+                                <div class="graph-chart mt-40">
+
+                                    <div class="table-wrap">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped mb-0 dataTable" id="dataTable1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#No.</th>
+                                                        <td>#Ticket No.</td>
+                                                        <td>User ID</td>
+                                                        <td>Name</td>
+                                                        <td>Subject</td>
+                                                        <td>Message</td>
+                                                        <td>Reply</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="trderlist">
+                                                    @{
+                                                        int rowNo = 0;
+                                                    }
+                                                    @if (ViewData["lst1"] != null)
+                                                    {
+                                                        @if (ViewData["lst1"] != null)
+                                                        {
+                                                            foreach (var item in ViewData["lst1"] as List<modCompose>)
+                                                            {
+                                                                <tr>
+                                                                    <td>@(rowNo += 1)</td>
+                                                                    <td>@item.Ticket</td>
+                                                                    <td>@item.RegNo</td>
+                                                                    <td>@item.name</td>
+                                                                    <td>@item.Subject</td>
+                                                                    <td>@item.Message</td>
+                                                                    <td>@item.Reply</td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                            <div style="float: left; width: 100%; text-align: left; padding-top: 10px;">
+                                                <button id="lbtn_delete" type="button" class="btn btn-danger" Style="text-align: center;">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="home_14" class="tab-pane fade" role="tabpanel">
+                                <div class="graph-chart mt-40">
+                                    <div class="table-wrap">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped mb-0 dataTable" id="dataTable1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#No.</th>
+                                                        <td>#Ticket No.</td>
+                                                        <td>User ID</td>
+                                                        <td>Send To</td>
+                                                        <td>Subject</td>
+                                                        <td>Message</td>
+                                                        <td>Date</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="trderlist">
+                                                    @{
+                                                        int rowNo1 = 0;
+                                                    }
+                                                    @if (ViewData["lst2"] != null)
+                                                    {
+                                                        @if (ViewData["lst2"] != null)
+                                                        {
+                                                            foreach (var item in ViewData["lst2"] as List<modCompose>)
+                                                            {
+                                                                <tr>
+                                                                    <td>@(rowNo1 += 1)</td>
+                                                                    <td>@item.Ticket</td>
+                                                                    <td>@item.RegNo</td>
+                                                                    <td>@item.sendto</td>
+                                                                    <td>@item.Subject</td>
+                                                                    <td>@item.Message</td>
+                                                                    <td>@item.CreateDate</td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    }
+
+                                                </tbody>
+                                            </table>
+
+                                            <div style="float: left; width: 100%; text-align: left; padding-top: 10px;">
+                                                <button type="button" id="LinkButton1" class="btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $(".dataTable1").dataTable();
+
+
+        });
+    });
+</script>

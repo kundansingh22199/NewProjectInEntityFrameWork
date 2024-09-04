@@ -1,0 +1,123 @@
+﻿@model modUsdtRequest
+@{
+    ViewBag.Title = "FundRequestUsdt";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+
+
+<html>
+<head>
+    <script src="~/User/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="~/User/assets/js/sweetalert.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link href="~/User/css/wallet.css" rel="stylesheet" />
+    <style>
+        .bank-details {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+            .bank-details .fa {
+                background: #ffffff;
+                color: #131722;
+                border: 8px solid #3e424b;
+                padding: 28px;
+                font-size: 50px;
+                border-radius: 50%;
+            }
+
+        .input-group {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="row margin-balance ">
+        <input type="hidden" ID="rbtnRegisWallet" />
+        <input type="hidden" ID="rbtnltc" />
+        <input type="hidden" ID="hfUserID" />
+
+        <div class="col-md-4 col-xs-12 col-sm-6 col-md-offset-4 wow animated fadeInDown">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">Fund Request</h6>
+                    </div>
+                    <div class="loading" style="display: none;" id="loading"></div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pt-10 pl-0 pr-0">
+                        @using (Html.BeginForm("FundRequestUsdt", "User", FormMethod.Post))
+                        {
+                            <div class="form-wrap">
+
+                                <div class="form-group">
+                                    <label class="control-label mb-10" for="exampleInputuname_1">amount($)</label>
+                                    <div class="input-group">
+                                        @* <input type="text" name="usd" onkeypress="return isNumber(event)" class="form-control top-up" /> *@
+                                        <select class="form-control" name="usd" id="ddlamount">
+                                            <option value="0">---select---</option>
+                                            <option value="111">$111</option>
+                                            <option value="555">$555</option>
+                                            <option value="1111">$1111</option>
+                                            <option value="2222">$2222</option>
+                                            <option value="5555">$5555</option>
+                                            <option value="11111">$11111</option>
+                                        </select>
+
+                                        <span id="lblsponsorname" style="color:red;"></span>
+                                    </div>
+                                </div>
+                                <div class="my-2 text-center mt-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#565A69" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <polyline points="19 12 12 19 5 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label mb-10" for="exampleInputEmail_1">Package</label>
+                                    <div class="input-group">
+
+
+                                        <select class="form-control top-up" name="RequestType">
+                                            <option value="USDT">USDT</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button id="btntopup" class="btn btn-primary mr-10">Request</button>
+                                @* <input type="submit" id="btntopup" value="Request" class="btn btn-block btn-topup btn-success mr-10" /> *@
+                                <label style="color:green">@ViewBag.Message</label>
+                                <label style="color:red">@ViewBag.error </label>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+
+    </div>
+
+    <script>
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</body>
+
+
+</html>
+

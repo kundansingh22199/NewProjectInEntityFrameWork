@@ -1,0 +1,207 @@
+﻿@model modUsdtRequest
+@{
+    ViewBag.Title = "Confirmusdt";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+    var tempDataEmployeet = Convert.ToDecimal(TempData["usd"]);
+    TempData.Keep();
+}
+
+
+<html>
+<head>
+    <style>
+        .payment-image img {
+            margin-bottom: 17px;
+            width: 100%;
+            margin-top: 10px;
+            max-width: 150px;
+        }
+
+
+
+        .loading {
+            margin: 0px;
+            background-position: center center;
+            border: 1px dotted #000000;
+            z-index: 16000000;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            padding: 0px;
+            text-align: center;
+            background-color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 600;
+            color: #990000;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-color: black;
+            filter: alpha(opacity=10);
+            opacity: 0.5;
+            height: 100%;
+            background-image: url('../images/loading.gif');
+        }
+
+        #loader {
+            display: none;
+        }
+
+        .btc-address {
+            background: #ffffff0f;
+            color: #17eaaf;
+            margin-top: 16px;
+            padding: 7px 15px;
+            font-size: 12px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+    </style>
+    <script>
+        function ShowLoader() {
+            document.getElementById("loading").style.display = 'block';
+            setTimeout(function () {
+                document.getElementById("loading").style.display = 'none';
+            }, 2000);
+        }
+    </script>
+    <script src="~/User/assets/js/custom_JS/copy.js"></script>
+    <script src="~/User/assets/vendors/jquery-ui.min.js"></script>
+</head>
+<body>
+    <div class="row margin-balance ">
+
+        <div class="col-md-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">Confirm Your USDT Request</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                @*<div class="alert  mt-25 alert-success alert-dismissable" style="border: 1px solid#5EB0D6 !important; color: #1a5b85; background: #C2E4FD;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="fa fa-info-circle pr-15 pull-left"></i>
+                <p class="pull-left">Please manually transfer USDT to the wallet address specified below.</p>
+                <div class="clearfix"></div>
+                </div>*@
+                <div class="row">
+                    <div class="loading" style="display: none;" id="loading"></div>
+                    <div class=" payment-gateway">
+                        <div class="payment-image">
+                            <img src="~/User/images/usdt.png" />
+                        </div>
+                        @using (Html.BeginForm("Confirmusdt", "User", FormMethod.Post))
+                        {
+
+                            <div class=" gray">
+                                <div class="col-md-3">
+                                    <img class="img-scan" src="~/User/images/usdt-scan.png" style="max-width: 250px;
+border: 2px solid #ffffff1c;
+padding: 10px;" />
+                                    <span class="text-center block scan-now ">Scan now </span>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class=" col-md-6 btc-amount text-left">
+                                            USDT : @Model.usd
+                                        </div>
+                                        <div class=" col-md-6 btc-amount text-left">
+                                            USD : @Model.usd
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix">
+                                    </div>
+                                    <div class="btc-address">
+                                        @Model.address
+                                        &nbsp;
+                                        <a href="JavaScript:Void(0);">
+                                            <img Style="width: 24px; vertical-align: middle;" src="~/User/images/copy.png" />
+                                        </a>
+                                    </div>
+
+                                    <div class="text-left" style="font-size:12px">
+                                        This page will be automatically updated the payment status as soon as the transaction
+                                        is broadcasted. you have limited time to pay for the order, your order will credit
+                                        in your btc wallet with in 24 hours.
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col-md-3 btc-amount text-left">
+                                            Transaction Hash
+                                        </div>
+                                        <div class=" col-md-9 btc-amount text-left">
+                                            <input name="TranNo" Class="form-control" id="utrno" onblur="TranCheck()" placeholder="Enter Transaction ID" required="" />
+                                            <span id="lbltrans"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col-md-3 btc-amount text-left">
+                                            Remarks
+                                        </div>
+                                        <div class=" col-md-9 btc-amount text-left">
+                                            <input name="Remark" Class="form-control" placeholder="Enter Remark" required="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="col-md-12 mb-40 mt-40">
+                                <button id="btnsave" class="btn btn-primary pull-right" OnClick="ShowLoader();">I HAVE PAID</button>
+                                @* <input type="submit" id="btnsave" value="I HAVE PAID" OnClick="ShowLoader();" class="btn btn-primary pull-right" /> *@
+                                <span style="color:green">@ViewBag.Message</span>
+                                <span style="color:red">@ViewBag.error</span>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+
+            function TranCheck() {
+                $(".loader-div").show();
+                debugger
+                var tran = $('#utrno').val();
+                $.ajax({
+                    url: "/User/TranCheck",
+                    type: 'GET',
+                    dataType: 'json',
+                    data: { tranno: tran },
+                    success: function (details) {
+                        $(".loader-div").hide();
+                        debugger
+                        if (details == "OK") {
+                            $('#lbltrans').text(details);
+                            $('#lbltrans').css('color', 'green');
+                            $('#btnsave').prop('disabled', false);
+                        }
+                        else {
+                            $('#lbltrans').text(details);
+                            $('#lbltrans').css('color', 'red');
+                            $('#btnsave').prop('disabled', true);
+                        }
+
+                    },
+                    error: function (xhr, status, error) {
+                        debugger
+                        console.error('An error occurred while fetching sponsor name:', error);
+                        alert('An error occurred while fetching Sponsor id. Please try again later.');
+                        $('#btnsignup').prop('disabled', true);
+                    }
+                });
+            }
+
+        </script>
+    </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,458 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Registration</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <!-- Site Title  -->
+    <!-- Vendor Bundle CSS -->
+    <link rel="stylesheet" href="~/login/css/vendor.bundle8bfc.css?ver=1420" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="~/login/css/style1.css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" />
+    <style>
+        .user-ath {
+            background: linear-gradient(to right, #031b46ed 0%, #031746ad 100%), url(https://static.vecteezy.com/system/resources/previews/002/713/628/non_2x/trading-background-with-sharp-graphics-vector.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .input-bordered {
+            border-radius: 4px;
+            border: 1px solid #ffffff0f;
+            width: 100%;
+            padding: 10px 15px;
+            line-height: 20px;
+            font-size: 14px;
+            color: #fff;
+            transition: all .4s;
+            background: #ffffff12;
+        }
+
+        .user-ath-box {
+            position: relative;
+            padding: 28px 40px 40px;
+            background: #ffffff1f;
+            border-radius: 4px;
+            box-shadow: 0 10px 60px 0 rgb(0 0 0 / 8%);
+            backdrop-filter: blur(3px);
+        }
+
+            .user-ath-box::after {
+                /* background: none; */
+            }
+
+        .input-item {
+            padding-bottom: 20px;
+        }
+
+        .btn {
+            color: #fff;
+        }
+
+
+        .btn-primary {
+            background: #bcd729;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .bg-theme {
+            background-color: #0B0B29 !important;
+            overflow: scroll;
+        }
+
+        .input-bordered::placeholder {
+            color: #fff !important;
+        }
+
+        a {
+            outline: 0;
+            transition: all 0.5s;
+            color: #bcd729;
+        }
+
+        select:focus {
+            border: 2px solid;
+        }
+
+        option {
+            color: #333;
+        }
+
+        .loading {
+            margin: 0px;
+            background-position: center center;
+            border: 1px dotted #000000;
+            z-index: 16000000;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            padding: 0px;
+            text-align: center;
+            background-color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 600;
+            color: #990000;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-color: black;
+            filter: alpha(opacity=10);
+            opacity: 0.5;
+            height: 100%;
+            background-image: url('images/loading.gif');
+        }
+
+
+        #loader {
+            display: none;
+        }
+
+
+        #box {
+            width: 100%;
+            height: 100vh;
+            z-index: 1111111;
+            position: relative;
+            background: red;
+            text-align: center;
+        }
+
+        #loader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 99999;
+            background: #262240;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+            #loader .loading-icon {
+                width: 70px;
+                height: auto;
+                animation: loadingAnimation 0.5s ease-in-out infinite;
+            }
+
+        @@keyframes loadingAnimation {
+            0% {
+                transform: rotate(0deg)
+            }
+
+            100% {
+                transform: rotate(180deg)
+            }
+        }
+
+        .service-block-one .image {
+            background: black;
+            width: 100%;
+            height: 100%;
+        }
+
+        .service-block-one .image {
+            background: black;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .fa-spin {
+            -webkit-animation: fa-spin 6s infinite linear;
+            animation: fa-spin 6s infinite linear;
+        }
+
+        .btn-primary {
+            background: #9B75FB;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .bg-theme {
+            background-color: #0B0B29 !important;
+        }
+
+        .input-bordered::placeholder {
+            color: #fff !important;
+        }
+
+        .loader-div {
+            display: none;
+            position: fixed;
+            margin: 0px;
+            padding: 0px;
+            right: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 30001;
+            opacity: 0.8;
+        }
+
+        .loader-img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="moralisv1.js"></script>
+    <script src="web3min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".btn-primary").click(function () {
+                $(".loader-div").fadeIn().delay(2000).fadeOut('slow');
+            });
+        });
+        function CheckSponsorAvailability() {
+            $(".loader-div").show();
+            debugger
+            var sponsor = $('#txtsponsorid').val();
+            $.ajax({
+                url: "/Login/CheckSponsor",
+                type: 'GET',
+                dataType: 'json',
+                data: { SId: sponsor },
+                success: function (details) {
+                    $(".loader-div").hide();
+                    debugger
+                    if (details == "Sorry ! Invalid Sponsor ID !") {
+                        $('#lblSponsorName').text(details);
+                        $('#lblSponsorName').css('color', 'red');
+                        $('#btnsignup').prop('disabled', true);
+                    }
+                    else if (details == "") {
+                        $('#lblSponsorName').text(details);
+                        $('#lblSponsorName').css('color', 'red');
+                        $('#btnsignup').prop('disabled', true);
+                    }
+                    else {
+                        $('#lblSponsorName').text(details);
+                        $('#lblSponsorName').css('color', 'green');
+                        $('#btnsignup').prop('disabled', false);
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    debugger
+                    console.error('An error occurred while fetching sponsor name:', error);
+                    alert('An error occurred while fetching Sponsor id. Please try again later.');
+                    $('#btnsignup').prop('disabled', true);
+                }
+            });
+        }
+    </script>
+</head>
+<body class="user-ath no-touch bg-theme">
+    <form id="form1" method="post" class="user-ath-form">
+        <div>
+
+            <div class="loader-div">
+                <img class="loader-img" src="~/images/loderss.gif" style="height: 500px;width: auto;" />
+            </div>
+
+
+            <div class="user-ath-page">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-8  text-center">
+                            <div class="user-ath-logo">
+                                <a href="/Home/Index">
+                                    <img src="~/images/logo.png" alt="icon" style="max-width: 220px;" />
+                                </a>
+                            </div>
+                            <div class="user-ath-box">
+                                <h4>Create New Account</h4>
+                                <div class="input-item">
+                                    @if (ViewBag.sid != "" || ViewBag.sid != string.Empty)
+                                    {
+                                        <input type="text" placeholder="Sponsor ID" name="SId" class="input-bordered" readonly="readonly" id="txtsponsorid" onblur="CheckSponsorAvailability()" value="@ViewBag.sid" />
+                                    }
+                                    else
+                                    {
+                                        <input type="text" placeholder="Sponsor ID" name="SId" class="input-bordered" required="" id="txtsponsorid" onblur="CheckSponsorAvailability()" />
+                                        <label id="lblSponsorName"></label>
+                                    }
+                                    
+                                </div>
+                                <div class="input-item">
+                                    <input type="text" placeholder="Your Name" name="Name" class="input-bordered" required="" id="txtname" />
+                                </div>
+                                <div class="input-item">
+                                    <input type="email" placeholder="Enter Email ID" name="Email" class="input-bordered" required="" id="txtemail" />
+                                </div>
+                                <div class="input-item">
+                                    <input type="text" placeholder="Enter Mobile No" name="Mobile" maxlength="10" class="input-bordered" required="" id="txtmobile" />
+                                </div>
+                                <div class="input-item">
+                                    <input type="password" placeholder="Password" name="Password" class="input-bordered" required="" id="txtpwd" />
+                                </div>
+
+                                <div class="input-item">
+                                    <input type="password" placeholder="Confirm Password" name="ConfPassword" class="input-bordered" required="" id="txtconfpwd" />
+                                </div>
+
+                                @* <div class="input-item" style="display: none">
+                                <input type="password" placeholder="Transaction Password" name="TranPasswod" class="input-bordered" required="" id="txttranpwd" />
+                                </div>
+
+                                <div class="input-item" style="display: none">
+                                <input type="password" placeholder="Confirm Transaction Password" name="ConfTranPasswod" class="input-bordered" required="" id="txtconftranpwd" />
+                                </div> *@
+
+                                <div class="input-item text-left">
+                                    <input class="input-checkbox" name="chk" id="term-condition" type="checkbox" />
+                                    <label for="term-condition">I agree to <a href="#">Terms</a> and <a href="#">Policy.</a></label>
+                                </div>
+                                <div class="gaps"></div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button id="btnsignup" type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                                <br />
+                                <label id="lbl_msg_content" ForeColor="Red">@ViewBag.Err</label>
+                            </div>
+                            <div class="gaps-2x"></div>
+                            <div class="form-note">
+                                Already a member? <a href="/Login/SignIn">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero__shape">
+                <div class="shape shape--1">
+                    <img src="~/images/h_shape.png" alt="">
+                </div>
+                <div class="shape shape--2">
+                    <img src="~/images/h_shape2.png" alt="">
+                </div>
+                <div class="shape shape--3">
+                    <img src="~/images/h_shape3.png" alt="">
+                </div>
+            </div>
+
+            <!-- JavaScript (include all script here) -->
+            <script src="~/login/js/jquery.bundle.js?ver=101"></script>
+            <script src="~/login/js/script.js?ver=101"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+            <link href="http://tristanedwards.me/u/SweetAlert/lib/sweet-alert.css" rel="stylesheet" />
+
+            <script>
+                function isNumber(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
+            <script type="text/javascript">
+                function GetSelectedTextValue(ddlCountry) {
+                    var selectedText = ddlCountry.options[ddlCountry.selectedIndex].innerHTML;
+                    var selectedValue = ddlCountry.value;
+                    $('#txtccode').val(selectedValue);
+                }
+            </script>
+
+            <script>
+                function showLoader() {
+                    document.getElementById("loading").style.display = 'block';
+
+                    setTimeout(function () {
+                        document.getElementById("loading").style.display = 'none';
+                    }, 2000);
+                }
+            </script>
+
+
+            <script type="text/javascript">
+                function checkpassword() {
+                    alert('hello');
+                    var sponsid = document.getElementById("txtsponsorid");
+                    var name = document.getElementById("txtname");
+
+                    var country_code = document.getElementById("txtccode");
+                    var email = document.getElementById("txtemail");
+                    var mobile = document.getElementById("txtmobile");
+                    var password = document.getElementById("txtpwd");
+                    var confirm_password = document.getElementById("txtconfpwd");
+
+                    if (sponsid.value == "") {
+                        sponsid.focus();
+                        $("#txtsponsorid").notify("Please enter SponsorId.", { position: "bottom" });
+                        return false;
+                    }
+
+                    if (name.value == "") {
+                        name.focus();
+                        $("#txtname").notify("Please enter Name.", { position: "bottom" });
+                        return false;
+                    }
+                    if (country_code.value == "") {
+                        country_code.focus();
+                        $("#txtccode").notify("Please enter country code.", { position: "bottom" });
+                        return false;
+                    }
+                    if (email.value == "") {
+                        email.focus();
+                        $("#txtemail").notify("Please enter email.", { position: "bottom" });
+                        return false;
+                    }
+                    if (mobile.value == "") {
+                        mobile.focus();
+                        $("#txtmobile").notify("Please enter Mobile number.", { position: "bottom" });
+                        return false;
+                    }
+                    if (password.value == "") {
+                        password.focus();
+                        $("#txtpwd").notify("Please enter password.", { position: "bottom" });
+                        return false;
+                    }
+                    if (confirm_password.value == "") {
+                        confirm_password.focus();
+                        $("#txtconfpwd").notify("Please enter confirm password.", { position: "bottom" });
+                        return false;
+                    }
+
+                    if (confirm_password.value == password.value) {
+                        confirm_password.focus();
+                        //$("#txtconfpwd").notify("confrim password not match.", { position: "bottom" });
+                        alert('confrim password not match');
+                        return false;
+                    }
+                }
+
+
+
+            </script>
+
+
+        </div>
+    </form>
+</body>
+</html>

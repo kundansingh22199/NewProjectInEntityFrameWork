@@ -1,0 +1,202 @@
+﻿.kyc {
+    display: none;
+}
+/* https://gist.github.com/toddparker/32fc9647ecc56ef2b38a */
+.dropdown {
+    position: relative;
+    display: block;
+    margin-top: 0.5em;
+    padding: 0;
+}
+
+    .dropdown select {
+        margin: 0;
+        border: 1px solid transparent;
+        outline: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        appearance: none;
+        -webkit-appearance:;
+        color: #444;
+        padding: 10px;
+        line-height: 1.3;
+        height: 41px;
+        background: #fafafa;
+    }
+
+    .dropdown::after {
+        content: "";
+        position: absolute;
+        width: 9px;
+        height: 8px;
+        top: 50%;
+        right: 1em;
+        margin-top: -4px;
+        z-index: 2;
+        background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'%3E%3Cpolygon fill='rgb(102,102,102)' points='8,12 0,0 16,0'/%3E%3C/svg%3E") 0 0 no-repeat;
+        /* These hacks make the select behind the arrow clickable in some browsers */
+        pointer-events: none;
+    }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .dropdown select::-ms-expand {
+        display: none;
+    }
+    /* Removes the odd blue bg color behind the text in IE 10/11 and sets the text to match the focus style text */
+    select:focus::-ms-value {
+        background: transparent;
+        color: #222;
+    }
+}
+
+body:last-child .dropdown::after, x:-moz-any-link {
+    display: none;
+}
+
+body:last-child .dropdown select, x:-moz-any-link {
+    padding-right: .8em;
+}
+
+_::-moz-progress-bar, body:last-child .dropdown {
+    overflow: hidden;
+}
+
+    _::-moz-progress-bar, body:last-child .dropdown:after {
+        display: block;
+    }
+
+    _::-moz-progress-bar, body:last-child .dropdown select {
+        /* increase padding to make room for menu icon */
+        padding-right: 1.9em;
+        /* `window` appearance with these text-indent and text-overflow values will hide the arrow FF up to v30 */
+        -moz-appearance: window;
+        text-indent: 0.01px;
+        text-overflow: "";
+        /* for FF 30+ on Windows 8, we need to make the select a bit longer to hide the native arrow */
+        width: 110%;
+    }
+
+        _::-moz-progress-bar, body:last-child .dropdown select:focus {
+            outline: 2px solid rgba(180,222,250, .7);
+        }
+
+x:-o-prefocus, .dropdown::after {
+    display: none;
+}
+/* Hover style */
+.dropdown:hover {
+    border: 1px solid #888;
+}
+/* Focus style */
+select:focus {
+    outline: none;
+    box-shadow: 0 0 1px 3px rgba(180,222,250, 1);
+    background-color: transparent;
+    color: #222;
+    border: 1px solid #aaa;
+}
+/* Firefox focus has odd artifacts around the text, this kills that */
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+option {
+    font-weight: normal;
+}
+
+.button {
+    border: 1px solid #bbb;
+    border-radius: .3em;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+    background: #f3f3f3; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+}
+
+.output {
+    margin: 0 auto;
+}
+
+.colors {
+    color: #fff;
+    display: none;
+}
+
+.yellow {
+    color: #000;
+    background: #f5e000;
+}
+
+.blue {
+    background: #079;
+}
+
+.card-view.panel.panel-default > .panel-heading {
+    background: #1a4cc2;
+}
+
+.panel-title.txt-dark {
+    color: #fff !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .btn.btn-block.btn-primary.mt-90 {
+        margin-top: 20px !important;
+    }
+
+    .file-upload__field-label-text {
+        font-size: 13px;
+    }
+
+    .btn.btn-block.btn-primary.mt-90 {
+        margin-top: 20px !important;
+        margin-bottom: 20px;
+    }
+
+    .row.margin-balance.card-view {
+        padding: 0;
+        padding-top: 11px;
+    }
+}
+
+#webcam {
+    width: 100% !important;
+    height: auto !important;
+}
+
+    #webcam video {
+        min-width: 250px !important;
+        width: 100% !important;
+    }
+
+#ctl00_ContentPlaceHolder1_imgCapture {
+    min-width: 250px !important;
+    width: 100% !important;
+}
+
+.title {
+    font-size: 16px;
+    border-bottom: 1px solid #ffffff1c;
+}
+
+#ctl00_ContentPlaceHolder1_imgCapture, #webcam video {
+    background: url(images/blank.jpg);
+    min-height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none !important;
+    width: 100%;
+    background-color: #f4f4f4;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #ffffff08 !important;
+    opacity: 1;
+}

@@ -1,0 +1,197 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Trade 2 Profit</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="trade2profit.live" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Crypto Science | Legal and Reliable Crypto Coin" />
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <!-- Site Title  -->
+    <!-- Vendor Bundle CSS -->
+    <link rel="stylesheet" href="~/login/css/vendor.bundle8bfc.css?ver=1420" />
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="~/login/css/style1.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" />
+    <style>
+        .user-ath {
+            background: linear-gradient(to right, #031b46ed 0%, #031746ad 100%), url(https://static.vecteezy.com/system/resources/previews/002/713/628/non_2x/trading-background-with-sharp-graphics-vector.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .input-bordered {
+            border-radius: 4px;
+            border: 2px solid #ffffff17;
+            width: 100%;
+            padding: 10px 15px;
+            line-height: 20px;
+            font-size: 14px;
+            color: #c5d3ee;
+            transition: all .4s;
+            background: #192b3d00;
+        }
+
+        .user-ath-box {
+            position: relative;
+            padding: 45px 40px 40px;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0px 3px 8px 0px rgb(8, 13, 22);
+            backdrop-filter: blur(8px);
+        }
+
+            .user-ath-box::after {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 5px;
+                width: 100%;
+                content: '';
+                background: linear-gradient(151deg,#009c26 12%,#40C95B 100%);
+                background-size: 100%;
+                overflow: hidden;
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+            }
+
+        .btn {
+            color: #000;
+        }
+
+        .btn-primary {
+            background: linear-gradient(151deg,#4060d7 12%,#4a70fb 100%);
+            border: none !important;
+            box-shadow: 0px 2px 18px 2px rgba(248, 221, 113, 0.18);
+            color: #fff !important;
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: .75rem 1.25rem;
+            margin-bottom: -1px;
+            background: none !important;
+            border: 1px solid #6783b8 !important;
+            margin-bottom: 8px;
+            border-radius: 5px !important;
+            color: #000;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+            .list-group-item span {
+                color: #28a745;
+                font-weight: 600;
+                font-size: 16px;
+            }
+
+        h2 {
+            color: rgba(0,0,0,.65);
+            font-weight: 700;
+            font-size: 24px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+            };
+        });
+    </script>
+</head>
+<body class="user-ath no-touch">
+    <form id="form1">
+        <div>
+            <div class="user-ath-page">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        @if (ViewBag.data != null)
+                        {
+                            <div class="col-lg-7 col-md-8  text-center">
+                                <div class="user-ath-logo">
+                                    <a href="index.html">
+                                        <img src="~/images/logo-s2-white.png" alt="icon" style="max-width: 165px;" />
+                                    </a>
+
+                                </div>
+                                <div class="user-ath-box">
+                                    <img src="~/User/images/success.png" style="max-width:85px;" />
+                                    <h2>Registration Success</h2>
+                                    <div class="user-ath-form">
+                                        <h3>
+                                            <b class="text-primary">
+                                                Dear
+                                                <label id="lblUsername">@ViewBag.data.Name</label>,
+                                            </b>
+                                        </h3>
+                                        <p><b class="text-success ">Congratulation</b>, On your decision to soar sky high with us.</p>
+                                        <ul class="list-group">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                User ID
+                                                <span>
+                                                    <label id="lbluserid">@ViewBag.data.RegNo</label>
+                                                </span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Password
+                                                <span>
+                                                    <label id="lblpwd">@ViewBag.data.Password</label>
+                                                </span>
+                                            </li>
+
+                                            @* <li class="list-group-item d-flex justify-content-between align-items-center" style="display: none !important;">
+                                        Transaction Password
+                                        <span>
+                                        <label id="lbltranpwd">@ViewBag.data.TransPassword</label>
+                                        </span>
+                                        </li> *@
+
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Email ID
+                                                <span>
+                                                    <label id="lblemail">@ViewBag.data.Email</label>
+                                                </span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                Date
+                                                <span class="">
+                                                    <label id="lbldate">@ViewBag.data.Doj</label>
+                                                </span>
+                                            </li>
+                                        </ul>
+
+                                        <div class="gaps"></div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a href="/Login/SignIn" class="btn btn-block btn-primary">Back To Log In</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gaps-2x"></div>
+                                <div class="form-note">Not a member? <a href="/Login/SignUp">Sign Up Now</a> </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- JavaScript (include all script here) -->
+            <script src="~/login/js/jquery.bundle.js?ver=101"></script>
+            <script src="~/login/js/script.js?ver=101"></script>
+        </div>
+    </form>
+
+</body>
+</html>
+

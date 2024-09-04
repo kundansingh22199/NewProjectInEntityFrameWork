@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "Kyc ";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+<style>
+    .form-group {
+        padding-bottom: 7px;
+        margin: 11px 0 0 0;
+    }
+
+    .control-label {
+        padding-top: 8px;
+    }
+
+    .form-group label.control-label {
+        font-size: 14px;
+        line-height: 1.0714285718;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    a.btn {
+        color: #fff;
+    }
+
+    .loading {
+        margin: 0px;
+        background-position: center center;
+        border: 1px dotted #000000;
+        z-index: 16000000;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        padding: 0px;
+        text-align: center;
+        background-color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 600;
+        color: #990000;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        background-color: black;
+        filter: alpha(opacity=10);
+        opacity: 0.5;
+        height: 100%;
+        background-image: url('../images/loading.gif');
+    }
+
+    .form-group {
+        margin-bottom: 9px;
+    }
+
+    .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+        background-color: #ffffff08;
+    }
+
+    .loader-div {
+        display: none;
+        position: fixed;
+        margin: 0px;
+        padding: 0px;
+        right: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        z-index: 30001;
+        opacity: 0.8;
+    }
+
+    .loader-img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+<script src="~/assets/js/payment.js"></script>
+<script src="~/assets/js/demo.js"></script>
+
+<script type="text/javascript">
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+</script>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/js/sweetalert.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<div class="loader-div">
+    <img class="loader-img" src="~/images/loderss.gif" style="height: 500px;width: auto;" />
+</div>
+<div class="row ">
+    <div class="col-md-12 col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <div class="loading" style="display: none;" id="loading"></div>
+                    <h6 class="panel-title txt-dark">Kyc </h6>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <h6 class="panel-title txt-dark">
+                        KYC Status :  @Model.status
+                    </h6>
+                    <div class="form-wrap">
+                        <form method="post" action="/User/KycPage">
+                            <div role="form" class="form-horizontal">
+
+                                <div class="col-md-7 pa-0">
+                                    @*<div class="verification__form-field-wrapper">
+
+                                    <div data-v-1837a0f7="" class="file-upload">
+                                    <div class="file-upload__field file-upload__field--disabled">
+                                    <input type="file" id="file" name="PancardDoc" accept="image/jpeg" class="file-upload__field-input" onchange="show(this)" required="" />
+                                    <label for="flaadharback" class="file-upload__field-label">
+                                    <svg><i class="fa fa-upload" aria-hidden="true"></i></svg>
+                                    <span class="file-upload__field-label-text">Upload Document</span>
+                                    </label>
+                                    </div>
+
+                                    </div>
+                                    </div>*@
+                                    @*<img id="doc_img" Style="width: 120px; height: 120px; border: 2px solid #0b455a;" src="../images/Profile/@Model.PancardDoc" />
+                                    <label style="color: #fff; font-size: 13px;">Provide files in JPG or PDF format, 10 MB maximum.</label>
+                                    <div class="clearfix"></div>*@
+
+                                    <div class="form-group mt-15">
+                                        <label class="control-label mb-10">Account Holder Name</label>
+                                        <input type="text" name="Account_name" Class="form-control" placeholder="Enter A/c Holder Name" required="" value="@Model.Account_name" />
+                                    </div>
+                                    <div class="form-group mt-15">
+                                        <label class="control-label mb-10">Account Number</label>
+                                        <input type="text" name="AccountNo" Class="form-control" placeholder="Enter A/c Number" required="" value="@Model.AccountNo" />
+                                    </div>
+                                    <div class="form-group mt-15">
+                                        <label class="control-label mb-10">IFSC</label>
+                                        <input type="text" name="IFSC" Class="form-control" placeholder="Enter IFSC Code" required="" value="@Model.IFSC" />
+                                    </div>
+                                    <div class="form-group mt-15">
+                                        <label class="control-label mb-10">Bank Name</label>
+                                        <input type="text" name="bank" Class="form-control" placeholder="Enter Bank Name" required="" value="@Model.bank" />
+                                    </div>
+                                    <div class="form-group mt-15">
+                                        <label class="control-label mb-10">Branch Name</label>
+                                        <input type="text" name="Branch" Class="form-control" placeholder="Enter Branch Name" required="" value="@Model.Branch" />
+                                    </div>
+
+                                    <div class="form-group mt-15">
+                                        <label class="control-label mb-10">Usdt Address</label>
+                                        <input type="text" name="cryptoaddress" Class="form-control" placeholder="Enter Branch Name" required="" value="@Model.cryptoaddress" />
+                                    </div>
+
+
+                                    @if (@Model.status != "Approved")
+                                    {
+                                        <input type="submit" class="btn btn-block btn-primary" value="Submit Request" />
+                                        <label style="color:green">@ViewBag.Message</label>
+                                        <label style="color:red">@ViewBag.error </label>
+                                    }
+
+                                </div>
+
+                                @*  <div class="form-group row ">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                <button id="btnSubmit" type="submit" class="btn btn-primary m-t-15 ">Submit</button>
+                                <br />
+                                @{
+                                var message = ViewBag.mess as string;
+                                var labelColor = message == "ok" ? "green" : "red";
+                                }
+
+                                <label id="lblerror" style="color:@labelColor;">
+                                @message
+                                </label>
+                                </div>
+                                </div> *@
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<script>
+    // function showLoader() {
+    //     document.getElementById("loading").style.display = 'block';
+
+    //     setTimeout(function () {
+    //         document.getElementById("loading").style.display = 'none';
+    //     }, 2000);
+    // }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //GetWalletBalance();
+    })
+</script>

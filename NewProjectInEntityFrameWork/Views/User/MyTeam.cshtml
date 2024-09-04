@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "MyTeam";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+<div class="row margin-balance">
+
+    <div class="col-md-12 col-sm-12">
+
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">My Team Details</h6>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+
+                    <div class="table-wrap">
+                        <div class="table-responsive">
+                            <table class="table  table-striped dataTable tran" id="dataTable1">
+
+
+                                <thead>
+                                    <tr>
+                                        <th>#No.</th>
+                                        <th>User ID</th>
+                                        <th>Name</th>
+                                        <th>Sponsor Id</th>
+                                        <th>Level No</th>
+                                        <th>Package($)</th>
+                                        <th>Joining Date</th>
+                                        <th>Active Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int rowNo = 0;
+                                    }
+                                    @if (ViewData["lst"] != null)
+                                    {
+                                        foreach (var item in ViewData["lst"] as List<ModTeamDetails>)
+                                        {
+                                            <tr>
+                                                <td>@(rowNo += 1)</td>
+                                                <td>@item.regno</td>
+                                                <td>@item.name</td>
+                                                <td>@item.sid</td>
+                                                <td>@item.levelno</td>
+                                                <td class="text-success">$@item.jointype</td>
+                                                <td>@item.doj</td>
+                                                <td>@item.activedate</td>
+                                                <td style="color: @(item.paidunpaid == "Active" ? "green" : "red");">
+                                                    @item.paidunpaid
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                            <div id="diverror" class="alert alert-success alert-dismissable mt-30" style="border: 1px solid #98b6f9 !important; color: #1a4cc2; background: linear-gradient(to top, #eaf0ff 0%, #e6edff 100%); display:none">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-info-circle pr-15 pull-left"></i>
+                                <p class="pull-left">
+                                    <label id="lblError">No Data Available..!!</label>
+                                </p>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+<!-- /Row -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+
+            $("#dataTable1").dataTable();
+
+        });
+    });
+</script>

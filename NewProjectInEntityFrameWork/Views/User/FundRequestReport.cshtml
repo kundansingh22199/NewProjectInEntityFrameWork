@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "FundRequestReport ";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+<link rel="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" type="text/css" />
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $("#dataTable1").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+            $("#dataTable1").dataTable();
+        });
+    });
+</script>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view pt-0">
+            <div class="header">
+                <h2 class="panel__tit">Fund Request Report</h2>
+
+            </div>
+            <div class="clearfix">
+            </div>
+
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="table-wrap">
+                        <div class="table-responsive">
+                            <table class="table table-striped mb-0 dataTable" id="dataTable1">
+                                <thead>
+                                    <tr>
+                                        <td>#No.</td>
+                                        <td>User ID</td>
+                                        <td>Name</td>
+                                        <td>Amount(₹)</td>
+                                        <td>Usdt($)</td>
+                                        <td>Payment Mode</td>
+                                        <td>Transaction No</td>
+                                        <td>Bank Name</td>
+                                        <td>Branch Name</td>
+                                        <td>Account No</td>
+                                        <td>Upi Id</td>
+                                        <td>Status</td>
+                                        <td>Remarks</td>
+                                        <td>CreateDate</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="trderlist">
+                                    @{
+                                        int rowNo = 0;
+                                    }
+                                    @if (ViewData["lst"] != null)
+                                    {
+                                        foreach (var item in ViewData["lst"] as List<modFundrequestRpt>)
+                                        {
+                                            <tr>
+                                                <td>@(rowNo += 1)</td>
+                                                <td>@item.Regno</td>
+                                                <td>@item.Name</td>
+                                                <td>@item.amount</td>
+                                                <td>@item.usd</td>
+                                                <td>@item.pmode</td>
+                                                <td>@item.Utrno</td>
+                                                <td>@item.BankName</td>
+                                                <td>@item.BranchName</td>
+                                                <td>@item.AccountNo</td>
+                                                <td>@item.UpiId</td>
+                                                <td>@item.Status</td>
+                                                <td>@item.Remarks</td>
+                                                <td>@item.CreateDate</td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "Edit Profile ";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+<style>
+    .btn.btn-sm.pull-right.btn-primary.btn-outline:hover {
+        color: #fff;
+    }
+
+    .form-group label.control-label {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .form-group.form-cot {
+        margin-bottom: -1px;
+        border-bottom: 1px solid #ffffff0d;
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+        .form-group.form-cot label {
+            line-height: 34px !important;
+            padding-top: 0;
+            margin-bottom: 2px !important;
+        }
+
+    .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+        background: none !important;
+        opacity: 1;
+    }
+
+
+    h2.panel__titl {
+        font-size: 16px;
+        border-bottom: 1px solid #ffffff1f;
+    }
+</style>
+<div class="row margin-balance">
+    <div class="col-md-12 col-sm-12">
+        <form action="/User/EditProfile" method="post">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">Setting</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="header mt-10">
+                    <h2 class="panel__titl">Personal Information</h2>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="form-wrap">
+                            <div class="form-horizontal">
+                                <div class="form-group form-cot">
+                                    <label class="control-label mb-10 col-sm-6">Full Name</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="txtName" name="Name" class="form-control" value="@ViewBag.data.Name" placeholder="Enter Full Name" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-cot">
+                                    <label class="control-label mb-10 col-sm-6">Mobile Number</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="txtMobileNo" name="Mobile" value="@ViewBag.data.MobileNo" class="form-control" placeholder="Enter Mobile Number" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-cot">
+                                    <label class="control-label mb-10 col-sm-6">Email ID</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="txtEmailId" name="Email" value="@ViewBag.data.Email" class="form-control" placeholder="Enter Email ID !" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* <div class="header mt-10">
+                <h2 class="panel__titl">Wallet Address(BEP20)</h2>
+                </div>
+
+                <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                <div class="form-wrap">
+                <div class="form-horizontal">
+                <div class="form-group form-cot">
+                <label class="control-label mb-10 col-sm-6">USDT Address(BEP20)</label>
+                <div class="col-sm-6">
+                <input type="text" ID="txtbusdadd" class="form-control" name="UsdtAddress" value="" placeholder="Enter Wallet Address" />
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div> *@
+
+                <div class="header mt-10">
+                    <h2 class="panel__titl">Security Information</h2>
+                </div>
+
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="form-wrap">
+                            <div class="form-horizontal">
+                                <div class="form-group form-cot">
+                                    <label class="control-label mb-10 col-sm-6">New Password</label>
+                                    <div class="col-sm-6">
+                                        <input type="password" ID="txtPassword" name="NewPassword" class="form-control" placeholder="*********" />
+                                    </div>
+                                </div>
+                                <div class="form-group form-cot">
+                                    <label class="control-label mb-10 col-sm-6">Confirm New Password</label>
+                                    <div class="col-sm-6">
+                                        <input type="password" ID="txtReTypePassword" name="ConfPassword" class="form-control" placeholder="*********"></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header mt-10">
+                    <h2 class="panel__titl">Transaction Password</h2>
+                </div>
+
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="form-wrap">
+                            <div class="form-horizontal">
+                                <div class="form-group form-cot">
+                                    <label class="control-label mb-10 col-sm-6">New Transaction Password</label>
+                                    <div class="col-sm-6">
+                                        <input type="password" ID="txtfinankey" name="TransPassword" class="form-control" placeholder="*********" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-cot">
+                                    <label class="control-label mb-10 col-sm-6">Confirm Transaction Password</label>
+                                    <div class="col-sm-6">
+                                        <input type="password" ID="txtcfinankey" name="ConfTranPassword" class="form-control" placeholder="*********" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="form-wrap">
+                            <div class="form-horizontal">
+                                <div class="form-group form-cot">
+                                    <label class="control-label mb-10 col-sm-6">Enter Password</label>
+                                    <div class="col-sm-6">
+                                        <input type="password" ID="txtCurrentPin" name="Password" value="@ViewBag.data.Password" class="form-control" placeholder="Enter Password" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class=" input-group col-md-12 pb-30">
+                        <button type="submit" ID="btnSubmit" class="btn  pull-right btn-primary">Update Information</button>
+                    </div>
+                    @* <label id="lblerror" style="color:red"></label> *@
+                    <label style="color:green">@ViewBag.Message</label>
+                    <label style="color:red">@ViewBag.error </label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    function SpecialCharecter() {
+        var finankey = document.getElementById("#txtfinankey");
+
+        var str = $('#txtfinankey').val();
+        if (/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@@#\$%\^&\*])(?=.{8,})/.test(str) == false) {
+            alert('Minimal 8 characters, * include Uppercase, Lowercase, Numbers & Symbols!');
+        }
+    }
+</script>
