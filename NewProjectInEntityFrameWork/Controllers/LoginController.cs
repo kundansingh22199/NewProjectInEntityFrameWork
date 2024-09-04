@@ -33,7 +33,7 @@ namespace NewProjectInEntityFrameWork.Controllers
                 regNoParam,
                 passwordParam);
 
-            if (result == 1) 
+            if (result == 1)
             {
                 HttpContext.Session.SetString("UserId", obj.UserId);
                 return RedirectToAction("Dashboard", "User");
@@ -135,6 +135,20 @@ namespace NewProjectInEntityFrameWork.Controllers
                     sqlCommand,
                     nameParam, regnoParam, mobileParam, emailParam, passwordParam, leftRightParam, sidParam);
 
+                //string sqlCommand1 = "EXEC Proc_Insert_Data @Name, @regno, @MobileNo, @Email, @Password, @LeftRight, @SID";
+
+                //int result1 = await dbContext.Database.ExecuteSqlRawAsync(
+                //    sqlCommand1,
+                //    new object[]
+                //    {
+                //        obj.Name ?? (object)DBNull.Value,          // Name is string
+                //        obj.UserId ?? (object)DBNull.Value,        // UserId is string
+                //        obj.Mobile ?? (object)DBNull.Value,        // Mobile is string
+                //        obj.Email ?? (object)DBNull.Value,         // Email is string
+                //        obj.Password ?? (object)DBNull.Value,      // Password is string
+                //        0,                                         // LeftRight is int
+                //        obj.SId ?? (object)DBNull.Value            // SId is int?
+                //    });
                 if (result > 0)
                 {
                     HttpContext.Session.SetString("NewReg", obj.UserId);
