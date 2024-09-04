@@ -135,8 +135,8 @@ namespace NewProjectInEntityFrameWork.Controllers
                     sqlCommand,
                     nameParam, regnoParam, mobileParam, emailParam, passwordParam, leftRightParam, sidParam);
 
-                //string sqlCommand1 = "EXEC Proc_Insert_Data @Name, @regno, @MobileNo, @Email, @Password, @LeftRight, @SID";
 
+                //string sqlCommand1 = "EXEC Proc_Insert_Data @Name, @regno, @MobileNo, @Email, @Password, @LeftRight, @SID";
                 //int result1 = await dbContext.Database.ExecuteSqlRawAsync(
                 //    sqlCommand1,
                 //    new object[]
@@ -149,6 +149,19 @@ namespace NewProjectInEntityFrameWork.Controllers
                 //        0,                                         // LeftRight is int
                 //        obj.SId ?? (object)DBNull.Value            // SId is int?
                 //    });
+
+
+
+
+                //string sqlCommand2 = "EXEC Proc_Insert_Data @Name, @regno, @MobileNo, @Email, @Password, @LeftRight, @SID";
+                //var result2 = await dbContext.Database.ExecuteSqlRawAsync(
+                //    sqlCommand2,
+                //    new[]
+                //    {
+                //        new { Name = obj.Name, regno = obj.UserId, MobileNo = obj.Mobile, Email = obj.Email, Password = obj.Password, LeftRight = 0, SID = obj.SId }
+                //    });
+
+
                 if (result > 0)
                 {
                     HttpContext.Session.SetString("NewReg", obj.UserId);
