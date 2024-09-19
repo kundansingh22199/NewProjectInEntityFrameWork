@@ -317,7 +317,7 @@ namespace NewProjectInEntityFrameWork.Controllers
                 var unameParam = new SqlParameter("@uname", SqlDbType.VarChar, 100) { Direction = ParameterDirection.Output };
 
                 await dbContext.Database.ExecuteSqlRawAsync(
-                    "EXEC Proc_CheckUTR_status @utrno, @uname OUTPUT",
+                    "EXEC Proc_Checktran_usdtstatus @utrno, @uname OUTPUT",
                     sidParam, unameParam);
                 string uname = (string)unameParam.Value;
                 return Json(uname);
@@ -906,6 +906,7 @@ namespace NewProjectInEntityFrameWork.Controllers
             }
             else
             {
+                //var result1= await dbContext.Database.roiincome.ExecuteSqlAsync($"Proc_Getallreport @UserId={regno}, @flag='Roi_Income'");
                 var regnoParam = new SqlParameter("@UserId", regno);
                 var flagParam = new SqlParameter("@flag", "Roi_Income");
                 var result = await dbContext.roiincome
